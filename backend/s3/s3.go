@@ -1389,7 +1389,7 @@ func init() {
 		}, {
 			Name:     "endpoint",
 			Help:     "Endpoint for S3 API.\n\nRequired when using an S3 clone.",
-			Provider: "!AWS,ArvanCloud,IBMCOS,IDrive,IONOS,TencentCOS,HuaweiOBS,Alibaba,ChinaMobile,GCS,Liara,Linode,LyveCloud,Magalu,Scaleway,Selectel,StackPath,Storj,Synology,RackCorp,Qiniu,Petabox",
+			Provider: "!AWS,ArvanCloud,IBMCOS,IDrive,IONOS,TencentCOS,HuaweiOBS,Alibaba,ChinaMobile,GCS,Liara,Linode,LyveCloud,Magalu,Scaleway,Selectel,StackPath,Storj,Synology,RackCorp,Qiniu,Petabox,Zata.ai",
 			Examples: []fs.OptionExample{{
 				Value:    "objects-us-east-1.dream.io",
 				Help:     "Dream Objects endpoint",
@@ -1908,7 +1908,7 @@ func init() {
 		}, {
 			Name:     "location_constraint",
 			Help:     "Location constraint - must be set to match the Region.\n\nLeave blank if not sure. Used when creating buckets only.",
-			Provider: "!AWS,Alibaba,ArvanCloud,HuaweiOBS,ChinaMobile,Cloudflare,FlashBlade,IBMCOS,IDrive,IONOS,Leviia,Liara,Linode,Magalu,Outscale,Qiniu,RackCorp,Scaleway,Selectel,StackPath,Storj,TencentCOS,Petabox",
+			Provider: "!AWS,Alibaba,ArvanCloud,HuaweiOBS,ChinaMobile,Cloudflare,FlashBlade,IBMCOS,IDrive,IONOS,Leviia,Liara,Linode,Magalu,Outscale,Qiniu,RackCorp,Scaleway,Selectel,StackPath,Storj,TencentCOS,Petabox,Zata.ai",
 		}, {
 			Name: "acl",
 			Help: `Canned ACL used when creating buckets and storing or copying objects.
@@ -3525,6 +3525,9 @@ func setQuirks(opt *Options) {
 	case "LyveCloud":
 		useMultipartEtag = false // LyveCloud seems to calculate multipart Etags differently from AWS
 		useAlreadyExists = false // untested
+	case "Zata":
+		useMultipartEtag = false 
+		useAlreadyExists = false 
 	case "Magalu":
 		listObjectsV2 = false
 		virtualHostStyle = false
